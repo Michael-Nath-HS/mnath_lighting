@@ -26,7 +26,7 @@ def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
     diffuse_intensity = calculate_diffuse(light, dreflect, normal)
     specular_intensity = calculate_specular(light, sreflect, view, normal)
     array_length = 3
-    return [int(ambient_intensity[i]) + int(diffuse_intensity[i]) + int(specular_intensity[i]) for i in range(array_length)]
+    return limit_color([(int(ambient_intensity[i]) + int(diffuse_intensity[i]) + int(specular_intensity[i])) for i in range(array_length)])
 
 def calculate_ambient(alight, areflect):
     if type(alight) != list and type(areflect) != list:
@@ -58,7 +58,7 @@ def calculate_specular(light, sreflect, view, normal):
     return [light_color[i] * sreflect[i] * scaled_dot_prod for i in range(array_length)]
 
 def limit_color(color):
-    pass
+    return [max(min(int(color[i]), 255), 0) for i in range(len(color))]
 
 #vector functions
 #normalize vetor, should modify the parameter

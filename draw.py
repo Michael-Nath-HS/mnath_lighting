@@ -26,7 +26,6 @@ def scanline_convert(polygons, i, screen, zbuffer, color):
     BOT = 0
     TOP = 2
     MID = 1
-    print(color)
     points = [ (polygons[i][0], polygons[i][1], polygons[i][2]),
                (polygons[i+1][0], polygons[i+1][1], polygons[i+1][2]),
                (polygons[i+2][0], polygons[i+2][1], polygons[i+2][2]) ]
